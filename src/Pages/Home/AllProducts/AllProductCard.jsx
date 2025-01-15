@@ -2,7 +2,7 @@ import React from "react";
 import { FcRating } from "react-icons/fc";
 import { Link } from "react-router-dom";
 
-function ProductCard() {
+function AllProductCard() {
   return (
     <>
       <div>
@@ -40,4 +40,4 @@ function ProductCard() {
   );
 }
 
-export default ProductCard;
+export default AllProductCard;

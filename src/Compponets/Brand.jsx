@@ -1,15 +1,30 @@
 import React from "react";
 import bg from "../../public/Login-background.jpg";
-import { FaBriefcase, FaHeadphones } from "react-icons/fa";
+import {
+  FaBaby,
+  FaBox,
+  FaBriefcase,
+  FaCar,
+  FaCouch,
+  FaDumbbell,
+  FaGem,
+  FaGifts,
+  FaHeadphones,
+  FaHome,
+  FaLeaf,
+  FaShoePrints,
+  FaTshirt,
+  FaWarehouse,
+} from "react-icons/fa";
 
 const categories = [
-  { name: "Maca Gold", icon: <FaBriefcase size={32} /> },
-  { name: "Prime Test", icon: <FaHeadphones size={32} /> },
-  { name: "Maca Gold", icon: <FaBriefcase size={32} /> },
-  { name: "Prime Test", icon: <FaHeadphones size={32} /> },
+  { name: "Business Services", icon: <FaBriefcase size={32} /> },
+  { name: "Consumer Electronics", icon: <FaHeadphones size={32} /> },
+  { name: "Home & Garden", icon: <FaHome size={32} /> },
+  { name: "Beauty", icon: <FaGifts size={32} /> },
 ];
 
-function Category() {
+function Brand() {
   return (
     <>
       <div

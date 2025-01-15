@@ -1,88 +1,86 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import bg from "../../../public/Login-background.jpg";
 import { FaStar } from "react-icons/fa";
-import { useParams } from "react-router-dom";
-import "react-image-gallery/styles/css/image-gallery.css";
+import productData from "../../../public/fakeData";
 
 function DetailsPage() {
   const [loading, setLoading] = useState(false);
-  const [product, setProduct] = useState(null);
+  const [products, setProducts] = useState(null);
   const { id } = useParams();
 
-  //Get Products here
-  const getProducts = async () => {
-    try {
-      const res = await axios.get(
-        `https://backend-six-rosy.vercel.app/show-product/${id}`
-      );
-      setProduct(res?.data);
-    } catch (error) {
-      console.error("Error fetching product:", error);
-    }
-  };
-  useEffect(() => {
+  // Get product by ID
+  const getProductById = () => {
     setLoading(true);
-    getProducts();
+    const foundProduct = productData.product.find((p) => p._id === id);
+    setProducts(foundProduct);
     setLoading(false);
-  }, []);
-  // Format the product images for ImageGallery
-  // const images =
-  //   product.images?.map((img) => ({
-  //     original: img,
-  //     thumbnail: img,
-  //   })) || [];
-  return (
-    <>
-      <div
-        style={{ backgroundImage: `url(${bg})` }}
-        className="bg-cover bg-center flex flex-col md:flex-row justify-between p-8 mx-auto pt-28"
-      >
-        {/* Image Section */}
-        <div className="w-full md:w-1/2 flex justify-center">
-          {/* <img src={product.image} alt="" /> */}
-          {/* {images.length > 0 ? (
-          <ImageGallery
-            isFullscreen={false}
-            thumbnailPosition={"left"}
-            items={images}
-            showThumbnails={true}
-            additionalClass="custom-gallery"
-          />
-        ) : (
-          <p>No images available</p>
-        )} */}
-        </div>
+  };
 
-        {/* Details Section */}
-        <div className="w-full md:w-1/2 p-4 md:pl-20">
-          {/* {product.name} */}
-          <h1 className="text-2xl font-semibold mb-2"></h1>
-          <div className="text-sm mb-4 flex gap-1">
-            {[...Array(4)].map((_, i) => (
-              <FaStar key={i} className="text-yellow-500" />
-            ))}
-          </div>
-          <div className="text-lg mb-2">
-            <p>
-              <strong>Category:</strong>
-            </p>
-            {/* {product.category} */}
-            <p>
-              <strong>Brand:</strong>
-            </p>
-            {/* {product.brand || "Unknown"} */}
-            <p>
-              <strong>Model:</strong>
-            </p>
-            {/* {product.model || "N/A"} */}
-          </div>
-          <button className="mt-4 px-4 ml-2 py-2 font-semibold text-white  rounded bg-blue-600  hover:bg-blue-800 ">
-            Call For Buy: +880 1622-604352
-          </button>
+  useEffect(() => {
+    getProductById();
+  }, [id]);
+  console.log("id", id, "product", products?.images[0]);
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (!products) {
+    return <p>Product not found.</p>;
+  }
+
+  return (
+    <div
+      style={{ backgroundImage: `url(${bg})` }}
+      className="bg-cover bg-center flex flex-col md:flex-row justify-between p-8 mx-auto pt-28"
+    >
+      {/* Image Section */}
+      <div className="w-full md:w-1/2 flex justify-center">
+        <img src={products?.images[0]} alt={products.name} className="w-3/4" />
+      </div>
+
+      {/* Details Section */}
+      <div className="w-full md:w-1/2 p-4 md:pl-20">
+        <h1 className="text-2xl font-semibold mb-2">{products.name}</h1>
+        <div className="text-sm mb-4 flex gap-1">
+          {[...Array(4)].map((_, i) => (
+            <FaStar key={i} className="text-yellow-500" />
+          ))}
+        </div>
+        <div className="text-lg mb-2">
+          <p>
+            <strong>Category:</strong> {products.category}
+          </p>
+          <p>
+            <strong>Brand:</strong> {products.brand || "Unknown"}
+          </p>
+          <p>
+            <strong>Price:</strong> ${products.price.toFixed(2)}
+          </p>
+          <p>
+            <strong>Stock:</strong> {products.stock}
+          </p>
+        </div>
+        <div className="md:flex justify-center items-center space-x-4">
+          <a
+            href="tel:+8801622604352"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 px-4 py-2 font-semibold text-white rounded bg-blue-600 hover:bg-blue-800"
+          >
+            Call: +880 1622-604352
+          </a>
+          <a
+            href="https://wa.me/+8801622604352"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 px-4 py-2 font-semibold text-white rounded bg-green-600 hover:bg-green-800"
+          >
+            WhatsApp: +880 1622-604352
+          </a>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
