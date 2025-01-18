@@ -20,7 +20,7 @@ function DetailsPage() {
   useEffect(() => {
     getProductById();
   }, [id]);
-  console.log("id", id, "product", products?.images[0]);
+  console.log("product", products?.images[0]);
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -32,7 +32,7 @@ function DetailsPage() {
   return (
     <div
       style={{ backgroundImage: `url(${bg})` }}
-      className="bg-cover bg-center flex flex-col md:flex-row justify-between p-8 mx-auto pt-28"
+      className="bg-cover bg-center flex flex-col md:flex-row justify-between p-8 mx-auto pt-32"
     >
       {/* Image Section */}
       <div className="w-full md:w-1/2 flex justify-center">
@@ -49,7 +49,7 @@ function DetailsPage() {
         </div>
         <div className="text-lg mb-2">
           <p>
-            <strong>Category:</strong> {products.category}
+            <strong></strong> {products.description}
           </p>
           <p>
             <strong>Brand:</strong> {products.brand || "Unknown"}
@@ -61,12 +61,12 @@ function DetailsPage() {
             <strong>Stock:</strong> {products.stock}
           </p>
         </div>
-        <div className="md:flex justify-center items-center space-x-4">
+        <div className="grid grid-cols-1 gap-2 mt-2">
           <a
             href="tel:+8801622604352"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 px-4 py-2 font-semibold text-white rounded bg-blue-600 hover:bg-blue-800"
+            className=" px-4 py-2 md:w-1/2 w-full font-semibold text-white rounded bg-blue-600 hover:bg-blue-800"
           >
             Call: +880 1622-604352
           </a>
@@ -74,7 +74,7 @@ function DetailsPage() {
             href="https://wa.me/+8801622604352"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 px-4 py-2 font-semibold text-white rounded bg-green-600 hover:bg-green-800"
+            className=" px-2 py-2 w-full md:w-1/2 font-semibold  text-sm text-white rounded bg-green-600 hover:bg-green-800"
           >
             WhatsApp: +880 1622-604352
           </a>

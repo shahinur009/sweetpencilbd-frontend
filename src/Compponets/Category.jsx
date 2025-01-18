@@ -1,12 +1,13 @@
 import React from "react";
 import bg from "../../public/Login-background.jpg";
-import { FaBriefcase, FaHeadphones } from "react-icons/fa";
+import { FaAdjust, FaBriefcase, FaHeadphones } from "react-icons/fa";
+import { FaPaintbrush } from "react-icons/fa6";
 
 const categories = [
   { name: "Maca Gold", icon: <FaBriefcase size={32} /> },
-  { name: "Prime Test", icon: <FaHeadphones size={32} /> },
-  { name: "Maca Gold", icon: <FaBriefcase size={32} /> },
-  { name: "Prime Test", icon: <FaHeadphones size={32} /> },
+  { name: "Prime Test", icon: <FaPaintbrush size={32} /> },
+  { name: "Female Products", icon: <FaBriefcase size={32} /> },
+  { name: "Male Products", icon: <FaAdjust size={32} /> },
 ];
 
 function Category() {

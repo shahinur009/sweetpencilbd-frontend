@@ -56,8 +56,8 @@ function Banner() {
             <div className="w-full">
               <img
                 className="object-cover w-full"
-                src="../../public/banner.jpg"
-                alt="slide images"
+                src="https://i.ibb.co.com/vLzcC6K/banner.jpg`"
+                alt="Banner image SweetPencil bd.online"
               />
             </div>
           </SwiperSlide>

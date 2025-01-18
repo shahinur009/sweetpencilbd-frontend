@@ -28,10 +28,12 @@ function ProductsPage() {
     <>
       <div>
         <h3 className="text-xl font-semibold md:text-4xl flex justify-center items-center my-6 ">
-          <span className="border-b-2 border-yellow-600">New Products</span>
+          <span className="border-b-2 border-yellow-600 font-bold">
+            New Products
+          </span>
         </h3>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 min-h-screen p-5">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 min-h-screen">
           {productProductData?.product.map((item) => (
             <ProductCard item={item} key={item._id} />
           ))}
