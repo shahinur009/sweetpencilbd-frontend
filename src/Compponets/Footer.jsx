@@ -29,7 +29,7 @@ const Footer = () => {
           <div>
             <h1 className="text-black font-bold">Contact Us</h1>
             <ul>
-              <li>+8801717-362117</li>
+              <li>+8801622-604352</li>
               <li>sweetpencilonline11@gmail.com</li>
               <li>Dhaka, Bangladesh</li>
               <li></li>
