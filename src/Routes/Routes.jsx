@@ -6,6 +6,13 @@ import Register from "../Pages/Register/Register";
 import DetailsPage from "../Pages/DetailsPage/DetailsPage";
 import Main from "../Layout/Main";
 import MinimalLayout from "../Layout/MainLayout";
+import DashboardLayout from "../Dashboard/DashboardLayout";
+import Dashboard from "../Dashboard/Dashboard";
+import ProductsStock from "../Dashboard/Pages/ProductStock/ProductsStock";
+import Update from "../Dashboard/Pages/ProductStock/Update";
+import AddProduct from "../Dashboard/Pages/AddProduct/AddProduct";
+import AdminBannerHome from "../Dashboard/Pages/Banner/AdminBannerHome";
+import CreateBanner from "../Dashboard/Pages/Banner/CreateBanner";
 
 export const router = createBrowserRouter([
   {
@@ -31,9 +38,37 @@ export const router = createBrowserRouter([
         path: "/login",
         element: <Login />,
       },
+    ],
+  },
+  {
+    path: "dashboard",
+    element: <DashboardLayout />,
+    errorElement: <ErrorPage />,
+    children: [
       {
-        path: "/register",
-        element: <Register />,
+        index: true,
+        element: <Dashboard />,
+      },
+      {
+        path: "stock",
+        element: <ProductsStock />,
+      },
+      {
+        path: "update/:id",
+        element: <Update />,
+      },
+      {
+        path: "add-product",
+        element: <AddProduct />,
+      },
+
+      {
+        path: "banner",
+        element: <AdminBannerHome />,
+      },
+      {
+        path: "banner/create-banner",
+        element: <CreateBanner />,
       },
     ],
   },
