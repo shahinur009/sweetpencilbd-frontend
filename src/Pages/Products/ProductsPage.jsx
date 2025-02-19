@@ -26,8 +26,8 @@ function ProductsPage() {
   // const data = data.product;
   return (
     <>
-      <div>
-        <h3 className="text-xl font-semibold md:text-4xl flex justify-center items-center my-6 ">
+      <div className="border-t border-gray-400 my-6">
+        <h3 className="text-xl font-semibold md:text-4xl flex justify-center items-center my-6">
           <span className="border-b-2 border-yellow-600 font-bold">
             New Products
           </span>

@@ -13,14 +13,10 @@ const Update = () => {
   const [product, setProduct] = useState({
     name: "",
     details: "",
-    category: "",
     stock: "",
     price: "",
-    color: "",
-    code: "",
-    model: "",
     brand: "",
-    image: null,
+    image: "",
   });
 
   // Fetch the product data based on ID from the URL
@@ -28,22 +24,13 @@ const Update = () => {
     const fetchProductData = async () => {
       try {
         const response = await axios.get(
-          `https://backend-six-rosy.vercel.app/stockUpdate/${id}`
+          `http://localhost:5000/singleProduct/${id}`
         );
-        const fetchedProduct = response?.data;
-        // console.log(response)
-        if (fetchedProduct) {
+        console.log("update", response);
+        if (response.data) {
           setProduct({
-            name: fetchedProduct.name || "",
-            details: fetchedProduct.details || "",
-            category: fetchedProduct.category || "",
-            stock: fetchedProduct.stock || "",
-            price: fetchedProduct.price || "",
-            color: fetchedProduct.color || "",
-            code: fetchedProduct.code || "",
-            brand: fetchedProduct.brand || "",
-            model: fetchedProduct.model || "",
-            image: fetchedProduct.image || null,
+            ...response.data,
+            image: response.data.image || "",
           });
         } else {
           toast.error("Product not found");
@@ -65,45 +52,45 @@ const Update = () => {
 
   // Handle image file change
   const handleImageChange = (e) => {
-    setProduct({ ...product, image: e.target.files[0] });
+    const file = e.target.files[0];
+    if (file) {
+      setProduct({ ...product, image: file });
+    }
   };
-
-  const { name, details, category, stock, price, color, code, brand, model } =
-    product;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       setLoading(true);
-      // Upload the image via utility function
-      const image_url = await imageUpload(product.image);
-      const updatedProduct = {
-        name,
-        image: image_url,
-        details,
-        category,
-        stock,
-        price,
-        color,
-        code,
-        brand,
-        model,
-      };
-      const res = await axios.put(
-        `https://backend-six-rosy.vercel.app/updateProduct/${id}`,
-        updatedProduct
-      );
-      if (res) {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Product updated successfully",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        setLoading(false);
-        navigate("/dashboard/stock"); // Redirect to stock dashboard after updating
+
+      let image_url = product.image;
+
+      // Upload new image if changed
+      if (product.image instanceof File) {
+        image_url = await imageUpload(product.image);
       }
+
+      const updatedProduct = {
+        ...product,
+        image: image_url, // Keep existing image if no new image is uploaded
+      };
+
+      await axios.put(
+        `http://localhost:5000/updateProduct/${id}`,
+        updatedProduct,
+        { headers: { "Content-Type": "application/json" } }
+      );
+
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Product updated successfully",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
+      setLoading(false);
+      navigate("/dashboard/stock");
     } catch (error) {
       console.error("Error updating product", error);
       toast.error("Product update failed!");
@@ -121,121 +108,50 @@ const Update = () => {
           Update Product
         </h2>
         <form onSubmit={handleSubmit}>
-          <div className="''">
-            <label className="block text-gray-700">Product Name</label>
-            <input
-              type="text"
-              name="name"
-              value={name}
-              onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded-md"
-              required
-            />
-          </div>
+          {[
+            { label: "Product Name", name: "name", type: "text" },
+            { label: "Product Details", name: "details", type: "textarea" },
+            { label: "Stock", name: "stock", type: "number" },
+            { label: "Brand", name: "brand", type: "text" },
+            { label: "Price", name: "price", type: "number" },
+          ].map(({ label, name, type }) => (
+            <div key={name} className="mb-4">
+              <label className="block text-gray-700">{label}</label>
+              {type === "textarea" ? (
+                <textarea
+                  name={name}
+                  value={product[name]}
+                  onChange={handleChange}
+                  className="w-full p-2 border resize-none border-gray-300 rounded-md"
+                  required
+                />
+              ) : (
+                <input
+                  type={type}
+                  name={name}
+                  value={product[name]}
+                  onChange={handleChange}
+                  className="w-full p-2 border border-gray-300 rounded-md"
+                  required
+                />
+              )}
+            </div>
+          ))}
 
-          <div className="''">
-            <label className="block text-gray-700">Product Details</label>
-            <textarea
-              name="details"
-              value={details}
-              onChange={handleChange}
-              className="w-full p-2 border resize-none border-gray-300 rounded-md"
-              required
-            />
-          </div>
-
-          <div className="''">
-            <label className="block text-gray-700">Category</label>
-            <input
-              type="text"
-              name="category"
-              value={category}
-              onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded-md"
-              required
-            />
-          </div>
-
-          <div className="''">
-            <label className="block text-gray-700">Stock</label>
-            <input
-              type="number"
-              name="stock"
-              value={stock}
-              onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded-md"
-              required
-            />
-          </div>
-
-          <div className="''">
-            <label className="block text-gray-700">Color</label>
-            <input
-              type="text"
-              name="color"
-              value={color}
-              onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded-md"
-              required
-            />
-          </div>
-
-          <div className="''">
-            <label className="block text-gray-700">Product Code</label>
-            <input
-              type="text"
-              name="code"
-              value={code}
-              onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded-md"
-              required
-            />
-          </div>
-
-          <div className="''">
-            <label className="block text-gray-700">Brand</label>
-            <input
-              type="text"
-              name="brand"
-              value={brand}
-              onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded-md"
-              required
-            />
-          </div>
-
-          <div className="''">
-            <label className="block text-gray-700">Model</label>
-            <input
-              type="text"
-              name="model"
-              value={model}
-              onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded-md"
-              required
-            />
-          </div>
-
-          <div className="''">
-            <label className="block text-gray-700">Price</label>
-            <input
-              type="number"
-              name="price"
-              value={price}
-              onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded-md"
-              required
-            />
-          </div>
-
-          <div className="''">
+          <div className="mb-4">
             <label className="block text-gray-700">Product Image</label>
             <input
               type="file"
               onChange={handleImageChange}
               className="w-full p-2 border border-gray-300 rounded-md"
-              required
             />
+            {product.image && !(product.image instanceof File) && (
+              <img
+                src={product.image}
+                alt="Product"
+                className="mt-2 w-32 h-32 object-cover border rounded-md"
+              />
+            )}
           </div>
 
           <button

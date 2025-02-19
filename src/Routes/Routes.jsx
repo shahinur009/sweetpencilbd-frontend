@@ -13,6 +13,7 @@ import Update from "../Dashboard/Pages/ProductStock/Update";
 import AddProduct from "../Dashboard/Pages/AddProduct/AddProduct";
 import AdminBannerHome from "../Dashboard/Pages/Banner/AdminBannerHome";
 import CreateBanner from "../Dashboard/Pages/Banner/CreateBanner";
+import OrderList from "../Dashboard/Pages/OrderList/OrderList";
 
 export const router = createBrowserRouter([
   {
@@ -25,18 +26,12 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/details/:id",
-        element: <DetailsPage />,
-      },
-    ],
-  },
-  {
-    path: "/",
-    element: <MinimalLayout />,
-    children: [
-      {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/details/:id",
+        element: <DetailsPage />,
       },
     ],
   },
@@ -69,6 +64,10 @@ export const router = createBrowserRouter([
       {
         path: "banner/create-banner",
         element: <CreateBanner />,
+      },
+      {
+        path: "order-list",
+        element: <OrderList />,
       },
     ],
   },

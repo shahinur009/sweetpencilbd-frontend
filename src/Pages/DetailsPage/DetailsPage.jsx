@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import bg from "../../../public/Login-background.jpg";
 import { FaStar } from "react-icons/fa";
 import productData from "../../../public/fakeData";
+import Swal from "sweetalert2";
+import axios from "axios";
 
 function DetailsPage() {
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState(null);
   const { id } = useParams();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     customerName: "",
     phone: "",
     address: "",
     courierFee: "",
+    quantity: 1, // Add a quantity field with initial value of 1
     totalCost: 0,
   });
 
@@ -34,31 +38,82 @@ function DetailsPage() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-      totalCost:
-        name === "courierFee"
-          ? parseFloat(value || 0) + (products?.price || 0)
-          : prev.totalCost,
-    }));
+    setFormData((prev) => {
+      let updatedValue = value;
+
+      // Update the quantity and total cost
+      if (name === "quantity") {
+        updatedValue = Math.max(1, parseInt(value) || 1); // Prevent 0 or negative values
+      }
+
+      return {
+        ...prev,
+        [name]: updatedValue,
+        totalCost:
+          name === "quantity"
+            ? updatedValue * (products?.price || 0) +
+              (parseFloat(formData.courierFee) || 0)
+            : name === "courierFee"
+            ? parseFloat(updatedValue || 0) +
+              prev.quantity * (products?.price || 0)
+            : prev.totalCost,
+      };
+    });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const mailtoLink = `mailto:sweetpencilonline11@gmail.com?subject=${encodeURIComponent(
-      "New Order"
-    )}&body=${encodeURIComponent(
-      `Customer Name: ${formData.customerName}
-  Phone: ${formData.phone}
-  Address: ${formData.address}
-  Product Name: ${products?.name}
-  Product Price: $${products?.price}
-  Courier Fee: $${formData.courierFee}
-  Total Cost: $${formData.totalCost}`
-    )}`;
-    window.location.href = mailtoLink;
-    alert("Order submitted! We will contact you shortly.");
+
+    const orderData = {
+      customerName: formData.customerName,
+      phone: formData.phone,
+      address: formData.address,
+      productName: products?.name,
+      productPrice: products?.price,
+      quantity: formData.quantity,
+      courierFee: formData.courierFee,
+      totalCost: formData.totalCost,
+      orderDate: new Date(),
+    };
+
+    try {
+      // Send the order data to the backend API using axios
+      const response = await axios.post(
+        "http://localhost:5000/place-order",
+        orderData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        Swal.fire({
+          title: "Success!",
+          text: "Order submitted! We will contact you shortly.",
+          icon: "success",
+          confirmButtonText: "Okay",
+        });
+        navigate("/");
+      } else {
+        Swal.fire({
+          title: "Oops!",
+          text: response.data.message || "Something went wrong.",
+          icon: "error",
+          confirmButtonText: "Try Again",
+        });
+      }
+    } catch (error) {
+      console.error("Error placing order:", error);
+      // Error alert with SweetAlert2
+      Swal.fire({
+        title: "Error",
+        text: "An error occurred. Please try again.",
+        icon: "error",
+        confirmButtonText: "Close",
+      });
+    }
   };
 
   if (loading) {
@@ -76,7 +131,11 @@ function DetailsPage() {
     >
       {/* Image Section */}
       <div className="w-full md:w-1/2 flex justify-center">
-        <img src={products?.images[0]} alt={products.name} className="w-3/4" />
+        <img
+          src={products?.images[0]}
+          alt={products.name}
+          className="w-3/4 md:h-96 h-full"
+        />
       </div>
 
       {/* Details Section */}
@@ -148,6 +207,18 @@ function DetailsPage() {
             ></textarea>
           </div>
           <div className="mb-4">
+            <label className="block text-sm font-medium mb-2">Quantity</label>
+            <input
+              type="number"
+              name="quantity"
+              value={formData.quantity}
+              onChange={handleInputChange}
+              className="w-full border rounded p-2"
+              min="1"
+              required
+            />
+          </div>
+          <div className="mb-4">
             <label className="block text-sm font-medium mb-2">
               Courier Fee
             </label>
@@ -165,7 +236,7 @@ function DetailsPage() {
             <label className="block text-sm font-medium mb-2">Total Cost</label>
             <input
               type="text"
-              value={`$${formData.totalCost}`}
+              value={`$${formData.totalCost.toFixed(2)}`}
               className="w-full border rounded p-2 bg-gray-100"
               readOnly
             />

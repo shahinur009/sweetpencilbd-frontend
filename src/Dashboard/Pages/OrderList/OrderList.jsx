@@ -1,45 +1,45 @@
 import { useEffect, useState } from "react";
 import bg from "../../../../public/Login-background.jpg";
-import { Link } from "react-router-dom";
-import Swal from "sweetalert2";
 import axios from "axios";
+import Swal from "sweetalert2";
 
-const ProductsStock = () => {
-  const [selectedCategory, setSelectedCategory] = useState("All");
+const OrderList = () => {
+  const [orders, setOrders] = useState([]);
+  const [selectedStatus, setSelectedStatus] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 3;
-  const [products, setProducts] = useState([]);
-  const [totalProducts, setTotalProducts] = useState(0);
+  const ordersPerPage = 5;
+  const [totalOrders, setTotalOrders] = useState(0);
   const [loading, setLoading] = useState(false);
 
-  const categories = ["All", "Electronics", "Clothing", "Furniture"];
+  const statuses = ["All", "Pending", "Shipped", "Delivered"];
 
-  // get products from the database based on current page and category
-  const getProducts = async () => {
+  // Fetch orders from the database
+  const getOrders = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`http://localhost:5000/stock`, {
+      const res = await axios.get(`http://localhost:5000/orders`, {
         params: {
-          category: selectedCategory === "All" ? "" : selectedCategory,
+          status: selectedStatus === "All" ? "" : selectedStatus,
           page: currentPage,
-          limit: productsPerPage,
+          limit: ordersPerPage,
         },
       });
-      setProducts(res.data.products);
-      setTotalProducts(res.data.totalCount); // Assuming your API returns total product count
+
+      setOrders(res.data.orders);
+      setTotalOrders(res.data.totalCount); // Assuming API returns total count
       setLoading(false);
     } catch (error) {
-      console.error("Error fetching products:", error);
+      console.error("Error fetching orders:", error);
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    getProducts();
-  }, [currentPage, selectedCategory]);
+    getOrders();
+  }, [currentPage, selectedStatus]);
 
-  // Calculate total pages based on total products
-  const totalPages = Math.ceil(totalProducts / productsPerPage);
+  // Calculate total pages
+  const totalPages = Math.ceil(totalOrders / ordersPerPage);
 
   const handleNextPage = () => {
     if (currentPage < totalPages) {
@@ -53,7 +53,7 @@ const ProductsStock = () => {
     }
   };
 
-  // handle delete
+  // Handle delete order
   const handleDelete = async (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -66,25 +66,24 @@ const ProductsStock = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axios.delete(`http://localhost:5000/delete/${id}`);
-          // Remove the deleted product from the local state
-          setProducts((prevProducts) =>
-            prevProducts.filter((product) => product._id !== id)
+          await axios.delete(`http://localhost:5000/orders/${id}`);
+          setOrders((prevOrders) =>
+            prevOrders.filter((order) => order._id !== id)
           );
           Swal.fire({
             position: "top",
             icon: "success",
-            title: "Product deleted successfully",
+            title: "Order deleted successfully",
             showConfirmButton: false,
             timer: 1500,
           });
-          getProducts(); // Fetch products again after deletion
+          getOrders();
         } catch (error) {
           console.log(error);
           Swal.fire({
             icon: "error",
             title: "Error",
-            text: "Failed to delete product!",
+            text: "Failed to delete order!",
           });
         }
       }
@@ -97,25 +96,25 @@ const ProductsStock = () => {
       className="px-4 mx-auto bg-cover bg-center min-h-screen w-full bg-white"
     >
       <div className="flex flex-col mb-6">
-        {/* Filter by Category */}
+        {/* Filter by Order Status */}
         <h1 className="text-md md:text-3xl font-extrabold mx-auto uppercase p-5">
-          All Stock Summary
+          Order List
         </h1>
         <div className="mb-4">
           <label className="mr-2 font-medium text-gray-700">
-            Filter by Category:
+            Filter by Status:
           </label>
           <select
             className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            value={selectedCategory}
+            value={selectedStatus}
             onChange={(e) => {
-              setSelectedCategory(e.target.value);
+              setSelectedStatus(e.target.value);
               setCurrentPage(1);
             }}
           >
-            {categories.map((category, index) => (
-              <option key={index} value={category}>
-                {category}
+            {statuses.map((status, index) => (
+              <option key={index} value={status}>
+                {status}
               </option>
             ))}
           </select>
@@ -128,17 +127,13 @@ const ProductsStock = () => {
                 <thead className="bg-gray-50 dark:bg-gray-800">
                   <tr>
                     <th className="px-4 py-3.5 text-sm font-normal text-left text-gray-500 dark:text-gray-400">
-                      Serial
+                      Order ID
                     </th>
                     <th className="px-4 py-3.5 text-sm font-normal text-left text-gray-500 dark:text-gray-400">
-                      Product Name
+                      Customer Name
                     </th>
-                    {/* <th className="px-4 py-3.5 text-sm font-normal text-left text-gray-500 dark:text-gray-400">
-                      Category
-                    </th> */}
-                    <th></th>
                     <th className="px-4 py-3.5 text-sm font-normal text-left text-gray-500 dark:text-gray-400">
-                      Stock
+                      Status
                     </th>
                     <th className="px-4 py-3.5 text-sm font-normal text-gray-500 dark:text-gray-400">
                       Action
@@ -148,40 +143,31 @@ const ProductsStock = () => {
                 <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
                   {loading ? (
                     <tr>
-                      <td colSpan="5" className="text-center py-4">
+                      <td colSpan="4" className="text-center py-4">
                         Loading...
                       </td>
                     </tr>
                   ) : (
-                    products.map((product, index) => (
-                      <tr key={product._id}>
+                    orders.map((order, index) => (
+                      <tr key={order._id}>
                         <td className="px-4 py-4 text-sm font-medium text-gray-700 dark:text-gray-200 whitespace-nowrap">
-                          {index + 1}
+                          {order._id}
                         </td>
                         <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                          {product.name}
+                          {order.customerName}
                         </td>
                         <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                          {product.category}
+                          {order.status}
                         </td>
                         <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                          {product.stock}
-                        </td>
-                        <div className="flex justify-center gap-4 items-center">
-                          <Link
-                            to={`/dashboard/update/${product._id}`}
-                            className="btn btn-secondary"
-                          >
-                            Update
-                          </Link>
                           <button
                             type="button"
                             className="btn btn-error"
-                            onClick={() => handleDelete(product._id)}
+                            onClick={() => handleDelete(order._id)}
                           >
                             Delete
                           </button>
-                        </div>
+                        </td>
                       </tr>
                     ))
                   )}
@@ -222,4 +208,4 @@ const ProductsStock = () => {
   );
 };
 
-export default ProductsStock;
+export default OrderList;
