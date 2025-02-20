@@ -4,22 +4,33 @@ import logo from "../../../public/sweetpencilbdlogo.png";
 import { FaHome, FaSpinner } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 function Login() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const signIn = async (email, password) => {
-    const response = await axios.post("http://localhost:5000/users", {
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
+    try {
+      const response = await axios.post("http://localhost:5000/login", {
+        email,
+        password,
+      });
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "admin login Successfully",
+        timer: 1500,
+      });
 
-    if (!response.ok) {
-      throw new Error("Login failed");
+      setLoading(false);
+      navigate("/dashboard");
+      return response.data;
+    } catch (err) {
+      throw new Error(
+        "Login failed: " + err.response?.data?.message || err.message
+      );
     }
-
-    return await response.json();
   };
 
   const handleLogin = async (event) => {
@@ -45,7 +56,10 @@ function Login() {
       className="bg-cover bg-center min-h-screen w-full"
     >
       <div className="w-full max-w-xl p-4 rounded-xl bg-white shadow-md mx-auto">
-        <Link to="/" className="bg-yellow-500 rounded-full w-12 h-12 flex justify-center items-center">
+        <Link
+          to="/"
+          className="bg-yellow-500 rounded-full w-12 h-12 flex justify-center items-center"
+        >
           <FaHome className="text-white text-xl" />
         </Link>
         <img src={logo} alt="Login" className="flex mx-auto h-36 w-36" />
@@ -55,7 +69,9 @@ function Login() {
 
         <form onSubmit={handleLogin} className="space-y-6">
           <div className="space-y-1 text-sm">
-            <label htmlFor="email" className="block text-gray-600">Email</label>
+            <label htmlFor="email" className="block text-gray-600">
+              Email
+            </label>
             <input
               type="email"
               name="email"
@@ -65,7 +81,9 @@ function Login() {
             />
           </div>
           <div className="space-y-1 text-sm">
-            <label htmlFor="password" className="block text-gray-600">Password</label>
+            <label htmlFor="password" className="block text-gray-600">
+              Password
+            </label>
             <input
               type="password"
               name="password"

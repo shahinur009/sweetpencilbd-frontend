@@ -37,7 +37,7 @@ const AddProduct = () => {
       setLoading(true);
       // upload image form imgbb
       const image_url = await imageUpload(product.image);
-      console.log(image_url);
+      // console.log(image_url);
       const sendingData = {
         name,
         image: image_url,
@@ -47,7 +47,7 @@ const AddProduct = () => {
         brand,
       };
       const res = axios.post("http://localhost:5000/add-product", sendingData);
-      console.log(res);
+      // console.log(res);
       if (res) {
         Swal.fire({
           position: "top-end",

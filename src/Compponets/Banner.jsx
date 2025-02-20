@@ -18,7 +18,7 @@ function Banner() {
       try {
         const response = await axios.get("http://localhost:5000/get-banner");
         setBanners(response.data);
-        console.log("Banners:", response.data);
+        // console.log("Banners:", response.data);
       } catch (err) {
         setError("Failed to fetch banners");
         console.error(err);

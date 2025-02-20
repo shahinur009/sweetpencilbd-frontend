@@ -20,7 +20,7 @@ function Navbar() {
         </Link>
 
         {/* Search Bar Section */}
-        <div className="hidden md:flex items-center flex-grow max-w-[70%] mx-4">
+        {/* <div className="hidden md:flex items-center flex-grow max-w-[70%] mx-4">
           <div className="relative flex items-center w-full">
             <input
               type="search"
@@ -35,7 +35,7 @@ function Navbar() {
               <CiSearch className="text-[#f57224] text-xl md:text-2xl" />
             </button>
           </div>
-        </div>
+        </div> */}
 
         {/* Right Section */}
         <div className="hidden md:flex items-center space-x-5">

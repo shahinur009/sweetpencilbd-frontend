@@ -35,14 +35,14 @@ const CreateBanner = () => {
       const imageUrl = response.data.data.url;
       setImageURL(imageUrl);
 
-      console.log("Image URL: ", imageUrl);
+      // console.log("Image URL: ", imageUrl);
 
       const formResponse = await axios.post(
         "http://localhost:5000/create-banner",
         { bannerImage: imageUrl }
       );
 
-      console.log("Server Response:", formResponse.data);
+      // console.log("Server Response:", formResponse.data);
 
       // Show success alert
       Swal.fire({

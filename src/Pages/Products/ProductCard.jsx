@@ -3,7 +3,7 @@ import { FcRating } from "react-icons/fc";
 import { Link } from "react-router-dom";
 
 function ProductCard({ item }) {
-  console.log(item.images[0]);
+  // console.log(item.image);
   return (
     <>
       <div className="shadow-lg transform transition-transform duration-300 hover:scale-105">
@@ -14,7 +14,7 @@ function ProductCard({ item }) {
           {/* Image Section */}
           <div className="w-full h-52 object-cover">
             <img
-              src={item?.images[0]}
+              src={item?.image}
               alt="Product"
               className="h-full flex justify-center mx-auto"
             />

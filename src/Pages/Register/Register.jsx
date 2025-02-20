@@ -20,10 +20,10 @@ function Register() {
 
   // Register handler
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
     createUser(data.email, data.password).then((result) => {
       const loggedUser = result.user;
-      console.log(loggedUser);
+      // console.log(loggedUser);
       updateUserProfile(data.name, data.photoURL)
         .then(() => {
           // create user entry in the database
@@ -35,7 +35,7 @@ function Register() {
             .post("https://backend-six-rosy.vercel.app/users", userInfo)
             .then((res) => {
               if (res.data.insertedId) {
-                console.log("user added to database");
+                // console.log("user added to database");
 
                 reset();
                 Swal.fire({

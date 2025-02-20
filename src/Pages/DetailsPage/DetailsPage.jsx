@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import bg from "../../../public/Login-background.jpg";
 import { FaStar } from "react-icons/fa";
-import productData from "../../../public/fakeData";
 import Swal from "sweetalert2";
 import axios from "axios";
 
@@ -15,21 +14,33 @@ function DetailsPage() {
     customerName: "",
     phone: "",
     address: "",
-    courierFee: "",
-    quantity: 1, // Add a quantity field with initial value of 1
+    courierFee: 0,
+    quantity: 1,
     totalCost: 0,
   });
 
   // Get product by ID
-  const getProductById = () => {
-    setLoading(true);
-    const foundProduct = productData.product.find((p) => p._id === id);
-    setProducts(foundProduct);
-    setFormData((prev) => ({
-      ...prev,
-      totalCost: foundProduct?.price || 0,
-    }));
-    setLoading(false);
+  const getProductById = async () => {
+    console.log("first");
+    try {
+      setLoading(true);
+      const res = await axios.get(`http://localhost:5000/show-product/${id}`);
+      console.log("first", res.data);
+      if (res.status === 200) {
+        setProducts(res.data);
+        setFormData((prev) => ({
+          ...prev,
+          totalCost: res.data.price || 0,
+        }));
+      } else {
+        setProducts(null);
+      }
+    } catch (error) {
+      console.error("Error fetching product:", error);
+      setProducts(null);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -43,7 +54,7 @@ function DetailsPage() {
 
       // Update the quantity and total cost
       if (name === "quantity") {
-        updatedValue = Math.max(1, parseInt(value) || 1); // Prevent 0 or negative values
+        updatedValue = Math.max(1, parseInt(value) || 1);
       }
 
       return {
@@ -74,6 +85,7 @@ function DetailsPage() {
       courierFee: formData.courierFee,
       totalCost: formData.totalCost,
       orderDate: new Date(),
+      status: "Pending",
     };
 
     try {
@@ -132,7 +144,7 @@ function DetailsPage() {
       {/* Image Section */}
       <div className="w-full md:w-1/2 flex justify-center">
         <img
-          src={products?.images[0]}
+          src={products?.image}
           alt={products.name}
           className="w-3/4 md:h-96 h-full"
         />
@@ -148,13 +160,13 @@ function DetailsPage() {
         </div>
         <div className="text-lg mb-2">
           <p>
-            <strong>Description:</strong> {products.description}
+            <strong>Details:</strong> {products.details}
           </p>
           <p>
             <strong>Brand:</strong> {products.brand || "Unknown"}
           </p>
           <p>
-            <strong>Price:</strong> ${products.price.toFixed(2)}
+            <strong>Price:</strong> ${products.price}
           </p>
           <p>
             <strong>Stock:</strong> {products.stock}
@@ -229,14 +241,13 @@ function DetailsPage() {
               onChange={handleInputChange}
               className="w-full border rounded p-2"
               placeholder="Enter courier fee"
-              required
             />
           </div>
           <div className="mb-4">
             <label className="block text-sm font-medium mb-2">Total Cost</label>
             <input
               type="text"
-              value={`$${formData.totalCost.toFixed(2)}`}
+              value={`$${formData.totalCost}`}
               className="w-full border rounded p-2 bg-gray-100"
               readOnly
             />

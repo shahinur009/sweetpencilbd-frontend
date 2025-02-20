@@ -80,7 +80,7 @@ const ProductsStock = () => {
           });
           getProducts(); // Fetch products again after deletion
         } catch (error) {
-          console.log(error);
+          // console.log(error);
           Swal.fire({
             icon: "error",
             title: "Error",
