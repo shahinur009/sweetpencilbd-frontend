@@ -14,7 +14,7 @@ function DetailsPage() {
     customerName: "",
     phone: "",
     address: "",
-    courierFee: 0,
+    courierFee: "All Bangladesh Courier Fee Free",
     quantity: 1,
     totalCost: 0,
   });
@@ -237,10 +237,11 @@ function DetailsPage() {
             <input
               type="number"
               name="courierFee"
+              disabled
               value={formData.courierFee}
               onChange={handleInputChange}
               className="w-full border rounded p-2"
-              placeholder="Enter courier fee"
+              placeholder="All Bangladesh Courier Fee Free"
             />
           </div>
           <div className="mb-4">

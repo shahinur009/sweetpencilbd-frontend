@@ -7,7 +7,7 @@ import axios from "axios";
 const ProductsStock = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 3;
+  const productsPerPage = 10;
   const [products, setProducts] = useState([]);
   const [totalProducts, setTotalProducts] = useState(0);
   const [loading, setLoading] = useState(false);
