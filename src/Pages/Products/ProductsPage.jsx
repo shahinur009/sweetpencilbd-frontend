@@ -25,19 +25,19 @@ function ProductsPage() {
   return (
     <div className="border-t border-gray-400 my-6">
       <h3 className="text-xl font-semibold md:text-4xl flex justify-center items-center my-6">
-        <span className="border-b-2 border-yellow-600 font-bold">
-          আমাদের কার্যকারী ভাইরাল প্রডাক্ট
+        <span className=" font-bold md:text-5xl text-3xl text-red-500">
+          ভাইরাল প্রডাক্ট
         </span>
       </h3>
 
       {loading ? (
         <p className="text-center text-lg">লোড হচ্ছে...</p>
       ) : (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 min-h-screen">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 md:gap-2">
           {products.length > 0 ? (
             products.map((item) => <ProductCard item={item} key={item._id} />)
           ) : (
-            <p className="text-center text-lg col-span-4">কোনো প্রোডাক্ট নেই</p>
+            <p className="text-center text-lg">কোনো প্রোডাক্ট নেই</p>
           )}
         </div>
       )}

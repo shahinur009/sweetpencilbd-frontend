@@ -6,12 +6,8 @@ function ProductCard({ item }) {
   // console.log(item.image);
   return (
     <>
-      <div className="shadow-lg transform transition-transform duration-300 hover:scale-105">
-        <Link
-          to={`details/${item._id}`}
-          className="bg-white shadow-md hover:shadow-lg border-b-[1px] border-r-[1px] border-l-[1px] border-t-0 border-transparent hover:border-b-[1px] hover:border-r-[1px] hover:border-l-[1px] hover:border-t-0 hover:border-gray-300 transition-shadow duration-300 p-2"
-        >
-          {/* Image Section */}
+      <div className="shadow border-2 transform transition-transform duration-300 hover:scale-105 bg-[#36f1d5] hover:bg-[#9be8dd] text-black py-4 rounded-md m-1 text-center">
+        <Link to={`details/${item._id}`} className="">
           <div className="w-full h-52 object-cover">
             <img
               src={item?.image}
@@ -19,23 +15,26 @@ function ProductCard({ item }) {
               className="h-full flex justify-center mx-auto"
             />
           </div>
-
-          {/* Product Details Section */}
           <div className="px-4 py-2 space-y-2">
-            <h1 className="text-gray-700 font-semibold text-md truncate">
-              {item?.name}
-            </h1>
-            <h1 className="text-gray-700 truncate">{item?.details}</h1>
-            <div className="flex items-center space-x-2">
-              <span className="text-red-500 font-bold text-lg">
-                ৳{item?.price}
-              </span>
+            <h1 className=" font-bold text-2xl truncate">{item?.name}</h1>
+            {/* <h1 className=" truncate">{item?.details}</h1> */}
+            <div className="flex flex-col justify-between items-center gap-2">
+              <div className="flex items-center">
+                <span className="text-red-500 font-bold text-lg">
+                  দাম - ৳{item?.price} টাকা মাত্র।
+                </span>
+              </div>
+              <div className="flex gap-1 mb-2">
+                <span className="text-red-500 font-bold"> কাস্টমার রেটিং-</span>
+                <FcRating />
+                <FcRating />
+                <FcRating />
+                <FcRating />
+              </div>
             </div>
-            <div className="flex gap-1">
-              <FcRating />
-              <FcRating />
-              <FcRating />
-              <FcRating />
+            <div className="flex justify-evenly items-center">
+              <button className="btn btn-warning">অর্ডার করুন </button>
+              <button className="btn btn-secondary"> বিস্তারিত দেখুন </button>
             </div>
           </div>
         </Link>

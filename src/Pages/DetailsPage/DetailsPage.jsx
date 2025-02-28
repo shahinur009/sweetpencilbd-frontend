@@ -152,86 +152,85 @@ function DetailsPage() {
 
       {/* Details Section */}
       <div className="w-full md:w-1/2 p-4 md:pl-20">
-        <h1 className="text-2xl font-semibold mb-2">{products.name}</h1>
+        <h1 className="text-lg md:text-2xl font-semibold mb-2">
+          পণ্যের নামঃ {products.name}
+        </h1>
         <div className="text-sm mb-4 flex gap-1">
           {[...Array(4)].map((_, i) => (
             <FaStar key={i} className="text-yellow-500" />
           ))}
         </div>
-        <div className="text-lg mb-2">
+        <div className="text-md md:text-lg mb-2">
           <p>
-            <strong>Details:</strong> {products.details}
+            <strong>বিস্তারিতঃ </strong> {products.details}
           </p>
           <p>
-            <strong>Brand:</strong> {products.brand || "Unknown"}
+            <strong>কোম্পানি নামঃ</strong> {products.brand || "Unknown"}
           </p>
           <p>
-            <strong>Price:</strong> ${products.price}
+            <strong>দামঃ</strong> ${products.price}
           </p>
           <p>
-            <strong>Stock:</strong> {products.stock}
+            <strong>মজুদ আছেঃ </strong> {products.stock}
           </p>
         </div>
 
         {/* Customer Form */}
-        <form
-          onSubmit={handleSubmit}
-          className="mt-4 p-4 bg-white rounded shadow-md"
-        >
-          <h2 className="text-xl font-bold mb-4">Order Form</h2>
-          <div className="mb-4">
-            <label className="block text-sm font-medium mb-2">
-              Customer Name
-            </label>
+        <form onSubmit={handleSubmit} className="mt-4 p-4 rounded shadow-md">
+          <h2 className="text-xl font-bold mb-4">আপনার তথ্য দিন ! </h2>
+          <div className="mb-4 ">
+            <label className="block text-lg font-medium mb-2">আপনার নাম</label>
             <input
               type="text"
               name="customerName"
               value={formData.customerName}
               onChange={handleInputChange}
-              className="w-full border rounded p-2"
+              className="w-full border rounded p-2 text-black"
               placeholder="Enter your name"
               required
             />
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-2">
-              Phone Number
+            <label className="block text-lg font-medium mb-2">
+              আপনার মোবাইল নাম্বার
             </label>
             <input
               type="tel"
               name="phone"
               value={formData.phone}
               onChange={handleInputChange}
-              className="w-full border rounded p-2"
+              className="w-full border rounded p-2 text-black"
               placeholder="Enter your phone number"
               required
             />
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-2">Address</label>
+            <label className="block text-lg font-medium mb-2">
+              আপনার ঠিকানা
+            </label>
             <textarea
               name="address"
               value={formData.address}
               onChange={handleInputChange}
-              className="w-full border rounded p-2"
+              className="w-full border rounded p-2 text-black"
               placeholder="Enter your address"
               required
             ></textarea>
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-2">Quantity</label>
+            <label className="block text-lg font-medium mb-2">পরিমাণ </label>
             <input
               type="number"
               name="quantity"
               value={formData.quantity}
               onChange={handleInputChange}
-              className="w-full border rounded p-2"
+              className="w-full border rounded p-2 text-black"
               min="1"
               required
             />
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-2">
+            <label className="block text-lg font-medium mb-2">
               Courier Fee
             </label>
             <input
@@ -240,24 +239,24 @@ function DetailsPage() {
               disabled
               value={formData.courierFee}
               onChange={handleInputChange}
-              className="w-full border rounded p-2"
-              placeholder="All Bangladesh Courier Fee Free"
+              className="w-full border rounded p-2 bg-white"
+              placeholder="সারাদেশে কুরিয়ার সার্ভিস ফ্রি !!! "
             />
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-2">Total Cost</label>
+            <label className="block text-lg font-medium mb-2">মোট টাকা </label>
             <input
               type="text"
               value={`$${formData.totalCost}`}
-              className="w-full border rounded p-2 bg-gray-100"
+              className="w-full border rounded p-2 text-black bg-gray-100"
               readOnly
             />
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white font-semibold py-2 rounded hover:bg-blue-800"
+            className="bg-[#dc590d] px-3 py-2 hover:bg-[#703a1b] w-full text-xl text-white font-semibold rounded"
           >
-            Place Order
+            অর্ডার করুন
           </button>
         </form>
       </div>

@@ -14,6 +14,8 @@ import AddProduct from "../Dashboard/Pages/AddProduct/AddProduct";
 import AdminBannerHome from "../Dashboard/Pages/Banner/AdminBannerHome";
 import CreateBanner from "../Dashboard/Pages/Banner/CreateBanner";
 import OrderList from "../Dashboard/Pages/OrderList/OrderList";
+import AddGallery from "../Dashboard/Pages/GalleryDashboard/AddGallery";
+import AdminGallery from "../Dashboard/Pages/GalleryDashboard/AdminGallery";
 
 export const router = createBrowserRouter([
   {
@@ -64,6 +66,14 @@ export const router = createBrowserRouter([
       {
         path: "banner/create-banner",
         element: <CreateBanner />,
+      },
+      {
+        path: "gallery",
+        element: <AdminGallery />,
+      },
+      {
+        path: "gallery/create-gallery",
+        element: <AddGallery />,
       },
       {
         path: "order-list",

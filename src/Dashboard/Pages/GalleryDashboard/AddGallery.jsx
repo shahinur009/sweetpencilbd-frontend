@@ -1,9 +1,9 @@
-import { useState } from "react";
 import axios from "axios";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const CreateBanner = () => {
+function AddGallery() {
   const [formData, setFormData] = useState({
     image: null,
   });
@@ -13,7 +13,6 @@ const CreateBanner = () => {
   const handleImageChange = (e) => {
     setFormData({ ...formData, image: e.target.files[0] });
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -35,31 +34,30 @@ const CreateBanner = () => {
       const imageUrl = response.data.data.url;
       setImageURL(imageUrl);
       const formResponse = await axios.post(
-        "http://localhost:5000/create-banner",
+        "http://localhost:5000/create-gallery",
         { bannerImage: imageUrl }
       );
       Swal.fire({
         title: "Success!",
-        text: "Banner uploaded successfully!",
+        text: "Gallery uploaded successfully!",
         icon: "success",
       });
-      navigate("/dashboard/banner");
+      navigate("/dashboard/gallery");
     } catch (error) {
       console.error("Error uploading the image", error);
       // Show error alert
       Swal.fire({
         title: "Error!",
-        text: "Failed to upload banner image.",
+        text: "Failed to upload gallery image.",
         icon: "error",
         confirmButtonText: "Try Again",
       });
     }
   };
-
   return (
     <div className="bg-[#F8F8EC] h-[82vh] justify-center flex items-center flex-col">
       <div className="md:w-[40%] w-full shadow-xl mx-auto p-4">
-        <h2 className="text-2xl font-bold mb-4">Upload Banner Image</h2>
+        <h2 className="text-2xl font-bold mb-4">Upload Gallery Image</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium">Image</label>
@@ -76,13 +74,13 @@ const CreateBanner = () => {
               type="submit"
               className="px-4 py-2 w-[80%] text-center text-white p-4 bg-red-400 font-bold rounded-md"
             >
-              Banner Upload
+              Gallery Upload
             </button>
           </div>
         </form>
       </div>
     </div>
   );
-};
+}
 
-export default CreateBanner;
+export default AddGallery;

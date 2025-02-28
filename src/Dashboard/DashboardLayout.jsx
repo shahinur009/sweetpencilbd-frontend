@@ -17,10 +17,7 @@ const DashboardLayout = () => {
       <div className="w-[15%] bg-[#dc4b76f5] min-h-screen ">
         <ul className="space-y-4 items-center p-2 text-white">
           <li>
-            <Link
-              className="text-xl font-bold  rounded-md p-2"
-              to={"/"}
-            >
+            <Link className="text-xl font-bold  rounded-md p-2" to={"/"}>
               Back Home
             </Link>
           </li>
@@ -40,6 +37,15 @@ const DashboardLayout = () => {
               className="flex items-center gap-3 bg-orange-400 rounded-md p-2"
             >
               <h1 className="text-md font-bold">Banner</h1>
+              <FaArrowRight />
+            </Link>
+          </li>
+          <li>
+            <Link
+              to={"/dashboard/gallery"}
+              className="flex items-center gap-3 bg-orange-400 rounded-md p-2"
+            >
+              <h1 className="text-md font-bold">Gallery</h1>
               <FaArrowRight />
             </Link>
           </li>
