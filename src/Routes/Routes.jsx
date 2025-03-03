@@ -16,6 +16,8 @@ import CreateBanner from "../Dashboard/Pages/Banner/CreateBanner";
 import OrderList from "../Dashboard/Pages/OrderList/OrderList";
 import AddGallery from "../Dashboard/Pages/GalleryDashboard/AddGallery";
 import AdminGallery from "../Dashboard/Pages/GalleryDashboard/AdminGallery";
+import AddVideo from "../Dashboard/Pages/VideosDashboard/AddVideo";
+import AdminVideo from "../Dashboard/Pages/VideosDashboard/AdminVideo";
 
 export const router = createBrowserRouter([
   {
@@ -74,6 +76,14 @@ export const router = createBrowserRouter([
       {
         path: "gallery/create-gallery",
         element: <AddGallery />,
+      },
+      {
+        path: "videos",
+        element: <AdminVideo />,
+      },
+      {
+        path: "video/create-video",
+        element: <AddVideo />,
       },
       {
         path: "order-list",

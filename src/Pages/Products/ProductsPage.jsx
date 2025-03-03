@@ -17,19 +17,17 @@ function ProductsPage() {
       setLoading(false);
     }
   };
-
   useEffect(() => {
     getProducts();
   }, []);
 
   return (
     <div className="border-t border-gray-400 my-6">
-      <h3 className="text-xl font-semibold md:text-4xl flex justify-center items-center my-6">
-        <span className=" font-bold md:text-5xl text-3xl text-red-500">
+      <h3 className="text-xl flex justify-center items-center my-6">
+        <span className="text-red-500 flex mx-auto justify-center text-2xl md:text-5xl">
           ভাইরাল প্রডাক্ট
         </span>
       </h3>
-
       {loading ? (
         <p className="text-center text-lg">লোড হচ্ছে...</p>
       ) : (

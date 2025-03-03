@@ -1,11 +1,13 @@
 import React from "react";
 import Banner from "../../Compponets/Banner";
 import ProductsPage from "../Products/ProductsPage";
-// import Category from "../../Compponets/Category";
 import FAQ from "./FAQ/FAQ";
 import Gallery from "./Gallery/Gallery";
-// import AllProducts from "./AllProducts/AllProducts";
-// import BrandProduct from "./BrandProduct/BrandProduct";
+import Videos from "./Videos/VIdeos";
+import WhyChoiceUs from "./WhyChoiceUs/WhyChoiceUs";
+import VideoGallery from "./VideoGallery/VideoGallery";
+import Testimonial from "./Testomonial/Testomonial";
+import Pricing from "./Pricsing/Pricsing";
 
 function Home() {
   return (
@@ -14,6 +16,11 @@ function Home() {
       {/* <Category></Category> */}
       <ProductsPage></ProductsPage>
       <Gallery />
+      <WhyChoiceUs></WhyChoiceUs>
+      {/*<Videos></Videos> */}
+      <VideoGallery></VideoGallery>
+      <Testimonial></Testimonial>
+      <Pricing></Pricing>
       <FAQ></FAQ>
     </div>
   );
