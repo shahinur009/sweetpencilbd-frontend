@@ -2,54 +2,27 @@ import React from "react";
 
 function Pricing() {
   return (
-    <section
-      style={{ padding: "50px", textAlign: "center", background: "#f9f9f9" }}
-    >
-      <h2 style={{ fontSize: "28px", marginBottom: "20px", color: "#333" }}>
-        মূল্য তালিকা
+    <section className="py-12 text-center bg-[#f8f8ec]">
+      <h2 className="text-red-500 flex mx-auto justify-center text-2xl md:text-5xl mb-5">
+        রমজান উপলক্ষ্যে বিশাল মূল্য ছাড় !!!
       </h2>
-      <div
-        style={{
-          maxWidth: "700px",
-          margin: "0 auto",
-          padding: "20px",
-          background: "#fff",
-          boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
-          borderRadius: "10px",
-        }}
-      >
-        <h3 style={{ fontSize: "24px", marginBottom: "10px", color: "#222" }}>
-          বেসিক প্ল্যান
-        </h3>
-        <p style={{ fontSize: "20px", fontWeight: "bold", color: "#007bff" }}>
-          সকল পণ্যে-
-        </p>
-        <p style={{ fontSize: "16px", color: "#666" }}>কমিশন: ১০%</p>
-        <ul
-          style={{
-            listStyle: "none",
-            padding: 0,
-            marginTop: "15px",
-            color: "#444",
-          }}
-        >
+      <div className="max-w-lg mx-auto p-6 bg-[#36f1d5] text-white shadow-lg rounded-lg">
+        <p className="text-xl font-bold text-blue-600">সকল পণ্যে-</p>
+        <p className="text-lg text-gray-600">কমিশন: ২০%</p>
+        <ul className="mt-4 text-gray-700 space-y-2">
           <li>✅ ২৪/৭ সাপোর্ট</li>
           <li>✅ ফ্রি আপডেট</li>
           <li>✅ ফ্রি দ্রুত ডেলিভারি</li>
         </ul>
-        <button
-          style={{
-            marginTop: "15px",
-            padding: "10px 20px",
-            background: "#007bff",
-            color: "#fff",
-            border: "none",
-            borderRadius: "5px",
-            cursor: "pointer",
-          }}
+
+        <a
+          href="tel:+8801622604352"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="my-1 md:my-3 flex mx-auto justify-center items-center md:w-96 w-full btn btn-warning md:font-bold md:text-xl text-sm "
         >
-          অর্ডার করুন
-        </button>
+          অর্ডার করতে: +880 1623503666
+        </a>
       </div>
     </section>
   );

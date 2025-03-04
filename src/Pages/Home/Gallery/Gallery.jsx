@@ -40,7 +40,7 @@ function Gallery() {
     }
   }, [galleries]);
   return (
-    <>
+    <section className="bg-[#f8f8ec]">
       <h1 className="text-red-500 flex mx-auto justify-center text-2xl md:text-5xl">
         ---আমাদের সম্মানিত গ্রাহকের ভালবাসা---
       </h1>
@@ -78,7 +78,7 @@ function Gallery() {
                     href="tel:+8801622604352"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="my-3 flex mx-auto justify-center items-center w-96 btn btn-warning font-bold text-xl"
+                    className="my-1 md:my-3 flex mx-auto justify-center items-center md:w-96 w-full btn btn-warning md:font-bold md:text-xl text-sm "
                   >
                     অর্ডার করতে চাইঃ +880 1623503666
                   </a>
@@ -103,7 +103,7 @@ function Gallery() {
           </>
         )}
       </div>
-    </>
+    </section>
   );
 }
 

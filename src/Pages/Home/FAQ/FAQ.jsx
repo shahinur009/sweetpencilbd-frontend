@@ -2,8 +2,8 @@ import React from "react";
 
 function FAQ() {
   return (
-    <div className="container w-[90%] mx-auto">
-      <h1 className="py-2 text-md md:text-3xl flex justify-center items-center font-bold">
+    <div className="container w-[90%] mx-auto flex flex-col justify-center items-center">
+      <h1 className="text-red-500 text-xl md:text-4xl font-bold mb-6 flex mx-auto">
         আপনার সকল প্রশ্নের উত্তর{" "}
       </h1>
       <div className="join join-vertical w-full bg-[#F8F8EC] flex justify-center items-center mb-5">
@@ -18,22 +18,22 @@ function FAQ() {
               মেডিসিন যা ব্যবহারে কোন ধরনেরপার্শ্ব প্রতিক্রিয়া বা সাইড ইফেক্ট
               হবেনা ।
             </p>
-            <div className="grid grid-cols-2 gap-2 mt-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-2">
               <a
                 href="tel:+8801622604352"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full px-2 py-2 font-semibold text-white rounded bg-blue-600 hover:bg-blue-800 text-center"
+                className="w-full px-2 py-2 font-semibold text-white rounded bg-yellow-500 hover:bg-yellow-600  text-center"
               >
-                Call: +880 1622-604352
+                Call: +880 1623503666
               </a>
               <a
                 href="https://wa.me/+8801622604352"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full px-2 py-2 font-semibold text-white rounded bg-green-600 hover:bg-green-800 text-center"
+                className="w-full px-2 py-2 font-semibold text-white rounded bg-[#dc590d] hover:bg-[#8a3706] text-center"
               >
-                WhatsApp: +880 1622-604352
+                WhatsApp: +880 1623503666
               </a>
             </div>
           </div>

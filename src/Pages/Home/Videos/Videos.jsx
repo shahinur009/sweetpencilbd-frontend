@@ -40,16 +40,17 @@ function Videos() {
       swiper.navigation.update();
     }
   }, [videos]);
+
   return (
-    <>
-      <h1 className="text-red-500 flex mx-auto justify-center text-2xl md:text-5xl">
-        ---ভিডিও ---
+    <section className="px-4 py-8 md:py-12">
+      <h1 className="text-red-500 text-center text-xl md:text-4xl font-bold">
+        --- ভিডিও ---
       </h1>
-      <div className="relative pt-20">
-        {loading && <p>Loading ভিডিও ...</p>}
-        {error && <p className="text-red-500">{error}</p>}
+      <div className="relative pt-10">
+        {loading && <p className="text-center">লোড হচ্ছে ভিডিও ...</p>}
+        {error && <p className="text-red-500 text-center">{error}</p>}
         {!loading && !error && videos.length === 0 && (
-          <p className="text-gray-500 text-center">ভিডিও নাই </p>
+          <p className="text-gray-500 text-center">কোন ভিডিও পাওয়া যায়নি</p>
         )}
         {!loading && !error && videos.length > 0 && (
           <>
@@ -67,21 +68,22 @@ function Videos() {
               className="mySwiper"
             >
               {videos.map((video) => (
-                <SwiperSlide key={video._id}>
-                  <div className="flex justify-center items-center mx-auto">
-                    <img
-                      className="md:w-[50%] w-full md:h-[500px] h-[300px]"
-                      src={video.videos}
-                      alt="videos"
-                    />
-                  </div>
+                <SwiperSlide
+                  key={video._id}
+                  className="flex flex-col items-center"
+                >
+                  <img
+                    className="w-full max-w-[90%] md:max-w-[70%] h-[200px] md:h-[400px] rounded-lg shadow-lg"
+                    src={video.videos}
+                    alt="videos"
+                  />
                   <a
                     href="tel:+8801622604352"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="my-3 flex mx-auto justify-center items-center w-96 btn btn-warning font-bold text-xl"
+                    className="mt-4 md:px-4 px-1 py-2 bg-yellow-500 text-white font-bold text-sm md:text-lg rounded-md hover:bg-yellow-600 transition"
                   >
-                    অর্ডার করতে চাইঃ +880 1623503666
+                    অর্ডার করতে কল করুন: +880 1623-503666
                   </a>
                 </SwiperSlide>
               ))}
@@ -90,21 +92,21 @@ function Videos() {
             {/* Navigation Buttons */}
             <button
               ref={prevRef}
-              className="absolute top-1/2 left-2 transform -translate-y-1/2 z-10"
+              className="absolute top-1/2 left-2 transform -translate-y-1/2 z-10 text-red-600"
             >
-              <FaChevronCircleLeft className="text-[#bd1616]" size={40} />
+              <FaChevronCircleLeft size={40} />
             </button>
 
             <button
               ref={nextRef}
-              className="absolute top-1/2 right-2 transform -translate-y-1/2 z-10 "
+              className="absolute top-1/2 right-2 transform -translate-y-1/2 z-10 text-red-600"
             >
-              <FaChevronCircleRight className="text-[#bd1616]" size={40} />
+              <FaChevronCircleRight size={40} />
             </button>
           </>
         )}
       </div>
-    </>
+    </section>
   );
 }
 
