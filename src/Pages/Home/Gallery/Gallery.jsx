@@ -41,10 +41,10 @@ function Gallery() {
   }, [galleries]);
   return (
     <section className="bg-[#f8f8ec]">
-      <h1 className="text-red-500 flex mx-auto justify-center text-2xl md:text-5xl">
+      <h1 className="text-red-500 flex mx-auto justify-center text-2xl md:text-5xl text-center py-4">
         ---আমাদের সম্মানিত গ্রাহকের ভালবাসা---
       </h1>
-      <div className="relative pt-20">
+      <div className="relative md:mt-10">
         {loading && <p>Loading Gallery Images...</p>}
         {error && <p className="text-red-500">{error}</p>}
         {!loading && !error && galleries.length === 0 && (
@@ -91,14 +91,14 @@ function Gallery() {
               ref={prevRef}
               className="absolute top-1/2 left-2 transform -translate-y-1/2 z-10"
             >
-              <FaChevronCircleLeft className="text-[#bd1616]" size={40} />
+              <FaChevronCircleLeft className="text-[#ededca]" size={30} />
             </button>
 
             <button
               ref={nextRef}
               className="absolute top-1/2 right-2 transform -translate-y-1/2 z-10 "
             >
-              <FaChevronCircleRight className="text-[#bd1616]" size={40} />
+              <FaChevronCircleRight className="text-[#ededca]" size={30} />
             </button>
           </>
         )}

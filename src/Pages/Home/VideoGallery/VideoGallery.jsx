@@ -2,14 +2,14 @@ import React from "react";
 
 function VideoGallery() {
   return (
-    <section className="py-12 px-4 bg-[#f8f8ec] text-center">
+    <section className="py-4 px-4 bg-[#f8f8ec] text-center">
       <h2 className="text-red-500 text-xl md:text-4xl font-bold mb-6">
         ভিডিও গ্যালারি
       </h2>
       <div className="flex justify-center flex-wrap gap-4">
         <iframe
           className="w-full sm:w-[350px] h-[200px] md:w-[560px] md:h-[315px] rounded-lg shadow-lg"
-          src="https://www.youtube.com/embed/tgbNymZ7vqY"
+          src="https://www.youtube.com/embed/bwS-bXzwqMk"
           title="YouTube video player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

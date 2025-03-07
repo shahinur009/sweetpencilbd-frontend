@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { CiSearch } from "react-icons/ci";
-import logo from "../../public/sweetpencilbdlogo.png";
+import logo from "../../public/new-image/logo.png";
 import { PiShoppingCartSimpleBold } from "react-icons/pi";
 import { FaBars } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -10,13 +10,13 @@ function Navbar() {
 
   return (
     <>
-      <div className="flex items-center justify-between shadow-md bg-[#dc590d] px-2 py-2 fixed z-50 right-0 left-0 h-20">
+      <div className="flex items-center justify-between shadow-md bg-[#ededca] px-2 py-2 fixed z-50 right-0 left-0 h-20 md:h-28">
         {/* Logo Section */}
         <Link to="/" className="flex items-center">
-          <img src={logo} alt="logo" className="w-12 h-12 md:w-24 md:h-24" />
-          <h1 className="text-white font-bold text-sm md:text-xl">
+          <img src={logo} alt="logo" className="w-28 h-28 md:w-44 md:h-40" />
+          <span className="text-black font-bold text-sm md:text-xl">
             Sweet PencilBD
-          </h1>
+          </span>
         </Link>
 
         {/* Search Bar Section */}

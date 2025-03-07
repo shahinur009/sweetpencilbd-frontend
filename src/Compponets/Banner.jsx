@@ -80,14 +80,14 @@ function Banner() {
             ref={prevRef}
             className="absolute top-1/2 left-2 transform -translate-y-1/2 z-10"
           >
-            <FaChevronCircleLeft className="text-[#bd1616]" size={40} />
+            <FaChevronCircleLeft className="text-[#ededca]" size={30} />
           </button>
 
           <button
             ref={nextRef}
             className="absolute top-1/2 right-2 transform -translate-y-1/2 z-10 "
           >
-            <FaChevronCircleRight className="text-[#bd1616]" size={40} />
+            <FaChevronCircleRight className="text-[#ededca]" size={30} />
           </button>
         </>
       )}

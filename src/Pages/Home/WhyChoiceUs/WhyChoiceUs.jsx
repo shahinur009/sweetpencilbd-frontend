@@ -2,7 +2,7 @@ import React from "react";
 
 function WhyChoiceUs() {
   return (
-    <section className="py-12 px-4 bg-gray-100 text-center">
+    <section className="py-4 px-4 text-center">
       <h1 className="text-red-500 text-xl md:text-4xl font-bold mb-6">
         আমাদের থেকে কেনো কিনবেন ?
       </h1>
@@ -50,11 +50,11 @@ function WhyChoiceUs() {
             <strong>বউয়ের সন্তুষ্টি</strong> - রাতে ২-৩ বার সহবাস করতে পারবেন
           </p>
         </div>
-        <h1>
+        <p>
           স্ত্রীর কাছে আর লজ্জা নয়, নিজেকে বাঘ হিসেবে প্রমান করার জন্য চ্যালেঞ্জ
           গ্রহন করুন। আমরা কাজে বিশ্বাসি, কথায় নয়। আল্লাহর উপর ভরশা করে এই
           ভেষজগুলোর গুনাগুন পরীক্ষা করতে পারেন
-        </h1>
+        </p>
       </div>
     </section>
   );

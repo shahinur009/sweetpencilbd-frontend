@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../public/sweetpencilbdlogo.png";
+import logo from "../../public/new-image/logo.png";
 import { FaFacebook } from "react-icons/fa";
 import { LuInstagram } from "react-icons/lu";
 import { SiGmail } from "react-icons/si";
@@ -13,12 +13,12 @@ const Footer = () => {
             <img
               src={logo}
               alt="mousum shop logo"
-              className="h-36 w-36 flex mx-auto md:block -mt-8"
+              className="h-44 w-48 flex mx-auto md:block -mt-8"
             />
             <h1 className="text-xl md:text-2xl text-black font-bold -mt-4">
               <span className="text-orange-500">Sweet Pencil</span> BD-Online
             </h1>
-            <p className="w-full">Best Online shop in Bangladesh</p>
+            <p className="w-full flex mx-auto justify-center items-center">Best Online shop in Bangladesh</p>
           </div>
           <div>
             <h1 className="text-black font-bold">Services</h1>

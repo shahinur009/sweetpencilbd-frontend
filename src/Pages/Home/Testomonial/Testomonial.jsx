@@ -2,7 +2,7 @@ import React from "react";
 
 function Testimonial() {
   return (
-    <section className="py-12 px-4 bg-gray-100 text-center">
+    <section className="py-4 px-4 bg-gray-100 text-center">
       <h1 className="text-red-500 text-xl md:text-4xl font-bold mb-6">
         গ্রাহকদের মতামত
       </h1>
