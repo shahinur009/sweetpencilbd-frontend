@@ -19,7 +19,7 @@ const ProductsStock = () => {
     try {
       setLoading(true);
       const res = await axios.get(
-        `https://backend.sweetpencilbd.online/stock`,
+        `https://sweetpencil-backend.vercel.app/stock`,
         {
           params: {
             category: selectedCategory === "All" ? "" : selectedCategory,
@@ -70,7 +70,7 @@ const ProductsStock = () => {
       if (result.isConfirmed) {
         try {
           await axios.delete(
-            `https://backend.sweetpencilbd.online/delete/${id}`
+            `https://sweetpencil-backend.vercel.app/delete/${id}`
           );
           // Remove the deleted product from the local state
           setProducts((prevProducts) =>

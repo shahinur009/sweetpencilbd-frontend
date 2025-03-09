@@ -10,7 +10,7 @@ function ProductsPage() {
     try {
       setLoading(true);
       const res = await axios.get(
-        "https://backend.sweetpencilbd.online/show-product"
+        "https://sweetpencil-backend.vercel.app/show-product"
       );
       setProducts(res.data);
     } catch (error) {

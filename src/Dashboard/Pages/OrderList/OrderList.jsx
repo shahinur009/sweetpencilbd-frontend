@@ -17,7 +17,7 @@ const OrderList = () => {
     try {
       setLoading(true);
       const res = await axios.get(
-        "https://backend.sweetpencilbd.online/orders",
+        "https://sweetpencil-backend.vercel.app/orders",
         {
           params: {
             status: selectedStatus === "All" ? "" : selectedStatus,
@@ -56,7 +56,7 @@ const OrderList = () => {
       if (result.isConfirmed) {
         try {
           const response = await axios.delete(
-            `https://backend.sweetpencilbd.online/orders/${id}`
+            `https://sweetpencil-backend.vercel.app/orders/${id}`
           );
 
           console.log("Delete response:", response.data); // Debugging

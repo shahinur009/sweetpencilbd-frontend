@@ -17,7 +17,7 @@ function Gallery() {
     const fetchBanners = async () => {
       try {
         const response = await axios.get(
-          "https://backend.sweetpencilbd.online/gallery"
+          "https://sweetpencil-backend.vercel.app/gallery"
         );
         setGallery(response.data);
         console.log("galleries:", response.data);

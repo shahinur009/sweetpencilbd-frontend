@@ -13,7 +13,7 @@ const AdminBannerHome = () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        "https://backend.sweetpencilbd.online/get-banner"
+        "https://sweetpencil-backend.vercel.app/get-banner"
       );
       setBanners(response.data);
     } catch (error) {
@@ -41,7 +41,7 @@ const AdminBannerHome = () => {
       if (result.isConfirmed) {
         try {
           await axios.delete(
-            `https://backend.sweetpencilbd.online/banner-delete/${id}`
+            `https://sweetpencil-backend.vercel.app/banner-delete/${id}`
           );
           setBanners((prevBanners) =>
             prevBanners.filter((banner) => banner._id !== id)

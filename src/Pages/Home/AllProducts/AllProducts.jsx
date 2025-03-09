@@ -8,7 +8,7 @@ function AllProducts() {
 
   const getProducts = async () => {
     const res = await axios.get(
-      "https://backend.sweetpencilbd.online/show-product"
+      "https://sweetpencil-backend.vercel.app/show-product"
     );
     // console.log(res.data)
     setProduct(res?.data);

@@ -34,7 +34,7 @@ function AddGallery() {
       const imageUrl = response.data.data.url;
       setImageURL(imageUrl);
       const formResponse = await axios.post(
-        "https://backend.sweetpencilbd.online/create-gallery",
+        "https://sweetpencil-backend.vercel.app/create-gallery",
         { bannerImage: imageUrl }
       );
       Swal.fire({

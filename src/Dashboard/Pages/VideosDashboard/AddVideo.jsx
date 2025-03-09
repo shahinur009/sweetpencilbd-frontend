@@ -34,7 +34,7 @@ function AddVideo() {
       const videoUrl = response.data.data.url;
       setImageURL(videoUrl);
       const formResponse = await axios.post(
-        "https://backend.sweetpencilbd.online/create-video",
+        "https://sweetpencil-backend.vercel.app/create-video",
         { bannerImage: videoUrl }
       );
       Swal.fire({
