@@ -8,13 +8,12 @@ function Pricing() {
       </h2>
       <div className="max-w-lg mx-auto p-6 bg-[#36f1d5] text-white shadow-lg rounded-lg">
         <p className="text-xl font-bold text-blue-600">সকল পণ্যে-</p>
-        <p className=" text-red-600 font-bold text-2xl ">ডিসকাউন্ট-: ১০%</p>
+        <p className=" text-red-600 font-bold text-2xl ">ডিসকাউন্ট-: ৩৫%</p>
         <ul className="mt-4 text-gray-700 space-y-2">
           <li>✅ ২৪/৭ সাপোর্ট</li>
           <li>✅ ডাক্টারের সাথে পরামর্শের সুযোগ </li>
           <li>✅ ফ্রি দ্রুত ডেলিভারি</li>
         </ul>
-
         <a
           href="tel:+8801622604352"
           target="_blank"

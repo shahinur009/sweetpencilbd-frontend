@@ -3,7 +3,7 @@ import Banner from "../../Compponets/Banner";
 import ProductsPage from "../Products/ProductsPage";
 import FAQ from "./FAQ/FAQ";
 import Gallery from "./Gallery/Gallery";
-import Videos from "./Videos/VIdeos";
+// import Videos from "./Videos/VIdeos";
 import WhyChoiceUs from "./WhyChoiceUs/WhyChoiceUs";
 import VideoGallery from "./VideoGallery/VideoGallery";
 import Testimonial from "./Testomonial/Testomonial";

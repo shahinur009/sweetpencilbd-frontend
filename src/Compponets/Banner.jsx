@@ -16,7 +16,9 @@ function Banner() {
   useEffect(() => {
     const fetchBanners = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/get-banner");
+        const response = await axios.get(
+          "https://backend.sweetpencilbd.online/get-banner"
+        );
         setBanners(response.data);
         // console.log("Banners:", response.data);
       } catch (err) {

@@ -17,7 +17,9 @@ function Videos() {
     const fetchVideos = async () => {
       setLoading(true);
       try {
-        const response = await axios.get("http://localhost:5000/videos");
+        const response = await axios.get(
+          "https://backend.sweetpencilbd.online/videos"
+        );
         setVideos(response.data);
         console.log("videos:", response.data);
       } catch (err) {

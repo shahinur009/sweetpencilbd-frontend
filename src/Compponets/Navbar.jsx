@@ -10,7 +10,7 @@ function Navbar() {
 
   return (
     <>
-      <div className="flex items-center justify-between shadow-md bg-[#ededca] px-2 py-2 fixed z-50 right-0 left-0 h-20 md:h-28">
+      <div className="flex items-center justify-between shadow-md bg-[#ededca] px-2 py-2 fixed z-50 right-0 left-0 h-20 md:h-24">
         {/* Logo Section */}
         <Link to="/" className="flex items-center">
           <img src={logo} alt="logo" className="w-28 h-28 md:w-44 md:h-40" />

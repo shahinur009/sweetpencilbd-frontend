@@ -12,10 +12,13 @@ function Login() {
 
   const signIn = async (email, password) => {
     try {
-      const response = await axios.post("http://localhost:5000/login", {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        "https://backend.sweetpencilbd.online/login",
+        {
+          email,
+          password,
+        }
+      );
       Swal.fire({
         position: "top-end",
         icon: "success",

@@ -32,7 +32,7 @@ function Register() {
             email: data.email,
           };
           axios
-            .post("https://backend-six-rosy.vercel.app/users", userInfo)
+            .post("https://backend.sweetpencilbd.online/users", userInfo)
             .then((res) => {
               if (res.data.insertedId) {
                 // console.log("user added to database");

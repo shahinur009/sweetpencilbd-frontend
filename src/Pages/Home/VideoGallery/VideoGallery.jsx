@@ -9,7 +9,7 @@ function VideoGallery() {
       <div className="flex justify-center flex-wrap gap-4">
         <iframe
           className="w-full sm:w-[350px] h-[200px] md:w-[560px] md:h-[315px] rounded-lg shadow-lg"
-          src="https://www.youtube.com/embed/bwS-bXzwqMk"
+          src="https://www.youtube.com/embed/6E3y3BS9N6M"
           title="YouTube video player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

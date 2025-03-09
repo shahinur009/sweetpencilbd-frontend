@@ -16,13 +16,16 @@ const OrderList = () => {
   const getOrders = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("http://localhost:5000/orders", {
-        params: {
-          status: selectedStatus === "All" ? "" : selectedStatus,
-          page: currentPage,
-          limit: ordersPerPage,
-        },
-      });
+      const res = await axios.get(
+        "https://backend.sweetpencilbd.online/orders",
+        {
+          params: {
+            status: selectedStatus === "All" ? "" : selectedStatus,
+            page: currentPage,
+            limit: ordersPerPage,
+          },
+        }
+      );
       setOrders(res.data.orders);
       setTotalOrders(res.data.totalCount);
       setLoading(false);
@@ -53,7 +56,7 @@ const OrderList = () => {
       if (result.isConfirmed) {
         try {
           const response = await axios.delete(
-            `http://localhost:5000/orders/${id}`
+            `https://backend.sweetpencilbd.online/orders/${id}`
           );
 
           console.log("Delete response:", response.data); // Debugging

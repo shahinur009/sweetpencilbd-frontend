@@ -12,7 +12,9 @@ const AdminBannerHome = () => {
   const getBanners = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:5000/get-banner");
+      const response = await axios.get(
+        "https://backend.sweetpencilbd.online/get-banner"
+      );
       setBanners(response.data);
     } catch (error) {
       console.error("Error fetching banners:", error);
@@ -38,7 +40,9 @@ const AdminBannerHome = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axios.delete(`http://localhost:5000/banner-delete/${id}`);
+          await axios.delete(
+            `https://backend.sweetpencilbd.online/banner-delete/${id}`
+          );
           setBanners((prevBanners) =>
             prevBanners.filter((banner) => banner._id !== id)
           );

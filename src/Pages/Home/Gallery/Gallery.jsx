@@ -16,7 +16,9 @@ function Gallery() {
   useEffect(() => {
     const fetchBanners = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/gallery");
+        const response = await axios.get(
+          "https://backend.sweetpencilbd.online/gallery"
+        );
         setGallery(response.data);
         console.log("galleries:", response.data);
       } catch (err) {

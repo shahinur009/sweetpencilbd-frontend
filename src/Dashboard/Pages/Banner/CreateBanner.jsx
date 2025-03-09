@@ -35,7 +35,7 @@ const CreateBanner = () => {
       const imageUrl = response.data.data.url;
       setImageURL(imageUrl);
       const formResponse = await axios.post(
-        "http://localhost:5000/create-banner",
+        "https://backend.sweetpencilbd.online/create-banner",
         { bannerImage: imageUrl }
       );
       Swal.fire({

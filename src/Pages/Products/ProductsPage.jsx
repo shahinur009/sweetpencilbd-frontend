@@ -9,8 +9,10 @@ function ProductsPage() {
   const getProducts = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("http://localhost:5000/show-product");
-      setProducts(res.data); // Directly store the fetched array
+      const res = await axios.get(
+        "https://backend.sweetpencilbd.online/show-product"
+      );
+      setProducts(res.data);
     } catch (error) {
       console.error("Error fetching products:", error);
     } finally {

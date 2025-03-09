@@ -24,7 +24,7 @@ const Update = () => {
     const fetchProductData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/singleProduct/${id}`
+          `https://backend.sweetpencilbd.online/singleProduct/${id}`
         );
         console.log("update", response);
         if (response.data) {
@@ -76,7 +76,7 @@ const Update = () => {
       };
 
       await axios.put(
-        `http://localhost:5000/updateProduct/${id}`,
+        `https://backend.sweetpencilbd.online/updateProduct/${id}`,
         updatedProduct,
         { headers: { "Content-Type": "application/json" } }
       );

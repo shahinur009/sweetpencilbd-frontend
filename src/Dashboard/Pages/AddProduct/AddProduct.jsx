@@ -46,7 +46,10 @@ const AddProduct = () => {
         price,
         brand,
       };
-      const res = axios.post("http://localhost:5000/add-product", sendingData);
+      const res = axios.post(
+        "https://backend.sweetpencilbd.online/add-product",
+        sendingData
+      );
       // console.log(res);
       if (res) {
         Swal.fire({

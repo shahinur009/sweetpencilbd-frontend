@@ -18,13 +18,16 @@ const ProductsStock = () => {
   const getProducts = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`http://localhost:5000/stock`, {
-        params: {
-          category: selectedCategory === "All" ? "" : selectedCategory,
-          page: currentPage,
-          limit: productsPerPage,
-        },
-      });
+      const res = await axios.get(
+        `https://backend.sweetpencilbd.online/stock`,
+        {
+          params: {
+            category: selectedCategory === "All" ? "" : selectedCategory,
+            page: currentPage,
+            limit: productsPerPage,
+          },
+        }
+      );
       setProducts(res.data.products);
       setTotalProducts(res.data.totalCount); // Assuming your API returns total product count
       setLoading(false);
@@ -66,7 +69,9 @@ const ProductsStock = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axios.delete(`http://localhost:5000/delete/${id}`);
+          await axios.delete(
+            `https://backend.sweetpencilbd.online/delete/${id}`
+          );
           // Remove the deleted product from the local state
           setProducts((prevProducts) =>
             prevProducts.filter((product) => product._id !== id)
