@@ -72,7 +72,7 @@ function Gallery() {
                   <div className="flex justify-center items-center mx-auto">
                     <img
                       className="md:w-[50%] w-full md:h-[500px] h-[300px]"
-                      src={gallery.galleryImage}
+                      src={gallery.image}
                       alt="Banner"
                     />
                   </div>
