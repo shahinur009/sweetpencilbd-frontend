@@ -13,7 +13,9 @@ function AdminGallery() {
   const getGalleries = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`${API_URL}/gallery`);
+      const response = await axios.get(
+        `https://sweetpencil-backend.vercel.app/gallery`
+      );
       setGalleries(response.data);
       console.log("gallery", response.data);
     } catch (error) {
@@ -40,7 +42,9 @@ function AdminGallery() {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axios.delete(`${API_URL}/gallery-delete/${id}`);
+          await axios.delete(
+            `https://sweetpencil-backend.vercel.app/gallery-delete/${id}`
+          );
           setGalleries((prevGalleries) =>
             prevGalleries.filter((gallery) => gallery._id !== id)
           );
