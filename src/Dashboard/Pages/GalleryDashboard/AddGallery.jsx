@@ -1,86 +1,95 @@
+import { useState } from "react";
+import bg from "../../../../public/Login-background.jpg";
+import { toast } from "react-toastify";
 import axios from "axios";
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+import { imageUpload } from "../../../Utilities/Utilities";
 
-function AddGallery() {
-  const [formData, setFormData] = useState({
-    image: null,
-  });
-  const [imageURL, setImageURL] = useState("");
+const AddGallery = () => {
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const [image, setImage] = useState(null);
 
+  // Handle image file change
   const handleImageChange = (e) => {
-    setFormData({ ...formData, image: e.target.files[0] });
+    setImage(e.target.files[0]);
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!formData.image) {
-      console.error("No image selected!");
-      return;
-    }
-
-    const apiKey = import.meta.env.VITE_IMGBB_API_KEY;
-    const formDataImage = new FormData();
-    formDataImage.append("image", formData.image);
-
     try {
-      const response = await axios.post(
-        `https://api.imgbb.com/1/upload?key=${apiKey}`,
-        formDataImage
+      setLoading(true);
+
+      // Upload image to IMGBB
+      const image_url = await imageUpload(image);
+      console.log(image_url);
+      if (!image_url) throw new Error("Image upload failed!");
+
+      // Send to backend with correct key 'bannerImage'
+      const res = await axios.post(
+        "https://sweetpencil-backend.vercel.app/create-gallery",
+        { bannerImage: image_url }, // Use 'bannerImage' instead of 'image'
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
       );
 
-      const imageUrl = response.data.data.url;
-      setImageURL(imageUrl);
-      const formResponse = await axios.post(
-        "https://sweetpencil-backend.vercel.app/create-gallery",
-        { bannerImage: imageUrl }
-      );
-      Swal.fire({
-        title: "Success!",
-        text: "Gallery uploaded successfully!",
-        icon: "success",
-      });
-      navigate("/dashboard/gallery");
+      console.log(res);
+
+      if (res && res.data) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Image added to Gallery!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+
+        setLoading(false);
+        navigate("/dashboard/gallery");
+      }
     } catch (error) {
-      console.error("Error uploading the image", error);
-      // Show error alert
-      Swal.fire({
-        title: "Error!",
-        text: "Failed to upload gallery image.",
-        icon: "error",
-        confirmButtonText: "Try Again",
-      });
+      console.error("Error from AddGallery", error);
+      toast.error(error.message);
+      setLoading(false);
     }
   };
+
   return (
-    <div className="bg-[#F8F8EC] h-[82vh] justify-center flex items-center flex-col">
-      <div className="md:w-[40%] w-full shadow-xl mx-auto p-4">
-        <h2 className="text-2xl font-bold mb-4">Upload Gallery Image</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium">Image</label>
+    <div
+      style={{ backgroundImage: `url(${bg})` }}
+      className="bg-cover bg-center min-h-screen w-full mx-auto bg-white p-6 flex rounded-lg shadow-md items-center"
+    >
+      <div className="w-[50%] mx-auto">
+        <h2 className="md:text-3xl text-md font-extrabold mb-6 text-center">
+          Add New Gallery Image
+        </h2>
+        <form onSubmit={handleSubmit}>
+          <div className="''">
+            <label className="block text-gray-700">Select Image</label>
             <input
               type="file"
               name="image"
               onChange={handleImageChange}
-              className="mt-1 block w-full text-sm text-gray-900 border rounded-md"
+              className="w-full p-2 border border-gray-300 rounded-md"
               required
             />
           </div>
-          <div className="py-5 flex justify-center">
-            <button
-              type="submit"
-              className="px-4 py-2 w-[80%] text-center text-white p-4 bg-red-400 font-bold rounded-md"
-            >
-              Gallery Upload
-            </button>
-          </div>
+
+          <button
+            type="submit"
+            className="w-full bg-[#f57224] text-white p-2 mt-4"
+            disabled={loading}
+          >
+            {loading ? "Uploading..." : "Add to Gallery"}
+          </button>
         </form>
       </div>
     </div>
   );
-}
+};
 
 export default AddGallery;

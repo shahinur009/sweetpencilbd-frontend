@@ -170,7 +170,7 @@ function DetailsPage() {
             <strong>কোম্পানি নামঃ</strong> {products.brand || "Unknown"}
           </p>
           <p>
-            <strong>দামঃ</strong> ${products.price}
+            <strong>দামঃ</strong> {products.price}
           </p>
           <p>
             <strong>মজুদ আছেঃ </strong> {products.stock}
@@ -249,7 +249,7 @@ function DetailsPage() {
             <label className="block text-lg font-medium mb-2">মোট টাকা </label>
             <input
               type="text"
-              value={`$${formData.totalCost}`}
+              value={`${formData.totalCost}`}
               className="w-full border rounded p-2 text-black bg-gray-100"
               readOnly
             />
@@ -262,6 +262,9 @@ function DetailsPage() {
           </button>
         </form>
       </div>
+      <a href="/" className="btn btn-warning">
+        Back To Home
+      </a>
     </div>
   );
 }

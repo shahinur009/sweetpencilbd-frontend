@@ -95,10 +95,10 @@ function AdminGallery() {
                 className="max-w-sm rounded-lg shadow-lg bg-white h-80"
               >
                 <img
-                  src={gallery.galleryImage}
+                  src={gallery.image}
                   alt="Gallery"
                   className="rounded-lg cursor-pointer h-60 w-full object-cover"
-                  onClick={() => setPreviewImage(gallery.galleryImage)}
+                  onClick={() => setPreviewImage(gallery.image)}
                 />
 
                 <div className="p-4">
