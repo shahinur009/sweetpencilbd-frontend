@@ -47,7 +47,7 @@ const AddProduct = () => {
         brand,
       };
       const res = await axios.post(
-        "https://sweetpencil-backend.vercel.app/add-product",
+        "https://backend.sweetpencilbd.xyz/add-product",
         sendingData
       );
       // console.log(res);

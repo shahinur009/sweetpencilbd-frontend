@@ -18,7 +18,7 @@ function Videos() {
       setLoading(true);
       try {
         const response = await axios.get(
-          "https://sweetpencil-backend.vercel.app/videos"
+          "https://backend.sweetpencilbd.xyz/videos"
         );
         setVideos(response.data);
         console.log("videos:", response.data);

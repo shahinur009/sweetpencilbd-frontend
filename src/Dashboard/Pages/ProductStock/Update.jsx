@@ -24,7 +24,7 @@ const Update = () => {
     const fetchProductData = async () => {
       try {
         const response = await axios.get(
-          `https://sweetpencil-backend.vercel.app/singleProduct/${id}`
+          `https://backend.sweetpencilbd.xyz/singleProduct/${id}`
         );
         console.log("update", response);
         if (response.data) {
@@ -76,7 +76,7 @@ const Update = () => {
       };
 
       await axios.put(
-        `https://sweetpencil-backend.vercel.app/updateProduct/${id}`,
+        `https://backend.sweetpencilbd.xyz/updateProduct/${id}`,
         updatedProduct,
         { headers: { "Content-Type": "application/json" } }
       );

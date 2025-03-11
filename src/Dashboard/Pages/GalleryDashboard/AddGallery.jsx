@@ -28,7 +28,7 @@ const AddGallery = () => {
 
       // Send to backend with correct key 'bannerImage'
       const res = await axios.post(
-        "https://sweetpencil-backend.vercel.app/create-gallery",
+        "https://backend.sweetpencilbd.xyz/create-gallery",
         { bannerImage: image_url }, // Use 'bannerImage' instead of 'image'
         {
           headers: {

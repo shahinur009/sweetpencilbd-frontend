@@ -25,7 +25,7 @@ function DetailsPage() {
     try {
       setLoading(true);
       const res = await axios.get(
-        `https://sweetpencil-backend.vercel.app/show-product/${id}`
+        `https://backend.sweetpencilbd.xyz/show-product/${id}`
       );
       console.log("first", res.data);
       if (res.status === 200) {
@@ -93,7 +93,7 @@ function DetailsPage() {
     try {
       // Send the order data to the backend API using axios
       const response = await axios.post(
-        "https://sweetpencil-backend.vercel.app/place-order",
+        "https://backend.sweetpencilbd.xyz/place-order",
         orderData,
         {
           headers: {

@@ -18,16 +18,13 @@ const ProductsStock = () => {
   const getProducts = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(
-        `https://sweetpencil-backend.vercel.app/stock`,
-        {
-          params: {
-            category: selectedCategory === "All" ? "" : selectedCategory,
-            page: currentPage,
-            limit: productsPerPage,
-          },
-        }
-      );
+      const res = await axios.get(`https://backend.sweetpencilbd.xyz/stock`, {
+        params: {
+          category: selectedCategory === "All" ? "" : selectedCategory,
+          page: currentPage,
+          limit: productsPerPage,
+        },
+      });
       setProducts(res.data.products);
       setTotalProducts(res.data.totalCount); // Assuming your API returns total product count
       setLoading(false);
@@ -69,9 +66,7 @@ const ProductsStock = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axios.delete(
-            `https://sweetpencil-backend.vercel.app/delete/${id}`
-          );
+          await axios.delete(`https://backend.sweetpencilbd.xyz/delete/${id}`);
           // Remove the deleted product from the local state
           setProducts((prevProducts) =>
             prevProducts.filter((product) => product._id !== id)

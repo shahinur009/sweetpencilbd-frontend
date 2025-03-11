@@ -17,7 +17,7 @@ function Banner() {
     const fetchBanners = async () => {
       try {
         const response = await axios.get(
-          "https://sweetpencil-backend.vercel.app/get-banner"
+          "https://backend.sweetpencilbd.xyz/get-banner"
         );
         setBanners(response.data);
         // console.log("Banners:", response.data);
